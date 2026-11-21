@@ -1,0 +1,9 @@
+# Sokoban solver — every room solved push-optimally
+
+[![make.fun · sokoban-solver-01-run-20261121](https://make.fun/badge/sokoban-solver-01-run-20261121.svg)](https://make.fun/bounty/sokoban-solver-01-run-20261121?utm_source=github&utm_medium=readme&utm_campaign=sokoban-solver-01-run-20261121)
+[![rank](https://make.fun/badge/sokoban-solver-01-run-20261121/deedath123/sokoban-solver-20261121/rank.svg)](https://make.fun/bounty/sokoban-solver-01-run-20261121/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=sokoban-solver-01-run-20261121)
+[![reward](https://make.fun/badge/sokoban-solver-01-run-20261121/deedath123/sokoban-solver-20261121/reward.svg)](https://make.fun/bounty/sokoban-solver-01-run-20261121?utm_source=github&utm_medium=readme&utm_campaign=sokoban-solver-01-run-20261121)
+
+A Sokoban solver for [make.fun](https://make.fun/bounty/sokoban-solver-01-run-20261121)'s sokoban-solver-01-run-20261121 bounty ($100 USDC). The drawn levels are a hallway with independent rooms off it, and a level's push optimum P* is the sum of its rooms' optima — so `main.ts` decomposes each level into its rooms, solves every room exactly with an A* over pushes (minimum-cost box-to-goal matching as the estimate, dead squares pruned, the player never sealed in), and stitches the rooms together with walks through the hallway, which cost no pushes. A whole-board push A* stands by if a level ever refuses to decompose. Deterministic: budgets are counted in expansions, never in time.
+
+Local gate before submitting: 1,000,000 of 1,000,000 on the kit's practice set (all five instances solved in exactly P* pushes: 13, 16, 29, 47, 60) and on 12 further sets drawn fresh with the kit's own generator; the house baseline, plain-astar 1.0.0, scores 200,000 on the practice set. Run: `node main.ts` reads `MAKEFUN_INPUT_DIR` (default `/input`) and writes each `<id>/solution.txt` under `MAKEFUN_OUTPUT_DIR` (default `/output`).
